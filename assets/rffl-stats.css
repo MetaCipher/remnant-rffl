@@ -286,7 +286,8 @@ th.rffl-rank { background: var(--rffl-header); }
   border-bottom: 2px solid var(--rffl-accent);
 }
 .rffl-qual {
-  display: block;
+  float: right;
+  margin-top: 1px;
   font-size: 9.5px;
   letter-spacing: 0.06em;
   color: var(--rffl-ink-soft);
@@ -297,7 +298,7 @@ th.rffl-rank { background: var(--rffl-header); }
 .rffl-board li {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
   padding: 4px 0;
   font-size: 13px;
@@ -317,6 +318,9 @@ th.rffl-rank { background: var(--rffl-header); }
   white-space: nowrap;
 }
 .rffl-lname em {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-style: normal;
   font-size: 10.5px;
   color: var(--rffl-ink-soft);
@@ -375,7 +379,8 @@ th.rffl-rank { background: var(--rffl-header); }
   color: var(--rffl-accent);
   margin: 18px 0 6px;
 }
-.rffl-results { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rffl-line); }
+.rffl-viewtitle:has(+ .rffl-results) { margin-top: 28px; }
+.rffl-results { list-style: none; margin: 0; padding: 0; max-width: 520px; border-top: 1px solid var(--rffl-line); }
 .rffl-results li {
   display: grid;
   grid-template-columns: 44px 1fr 16px 1fr;
