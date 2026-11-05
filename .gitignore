@@ -1,0 +1,3 @@
+# Real league exports (player names) stay local — the repo will be public like remnant-rsl
+sample/*
+!sample/.gitkeep

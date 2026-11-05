@@ -1,0 +1,406 @@
+/*
+ * RFFL Stats widget styles (copied from remnant-rsl).
+ * Brand palette: deep maroon #75231d (masthead/table headers) and brick red
+ * #ad3c2f (accent). --rffl-accent-soft is a light tint of the brand red for
+ * text sitting ON the maroon (dark-red-on-maroon fails contrast).
+ * Futura-style headings ("Jost" from Google Fonts approximates the site's
+ * futura-pt; falls back to system).
+ */
+.rffl {
+  --rffl-accent: #ad3c2f;
+  --rffl-accent-soft: #e7b3aa;
+  --rffl-ink: #272727;
+  --rffl-ink-soft: #75716d;
+  --rffl-header: #75231d;
+  --rffl-line: #e8e5e1;
+  --rffl-zebra: #faf9f7;
+  --rffl-card: #ffffff;
+  --rffl-heading-font: "Jost", "Futura", "Trebuchet MS", -apple-system, sans-serif;
+  --rffl-body-font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+
+  font-family: var(--rffl-body-font);
+  color: var(--rffl-ink);
+  max-width: 1060px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.rffl *, .rffl *::before, .rffl *::after { box-sizing: border-box; }
+
+/* ---------- masthead ---------- */
+.rffl-masthead {
+  background: var(--rffl-header);
+  color: #fff;
+  border-radius: 12px;
+  padding: 18px 22px 16px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.rffl-league {
+  font-family: var(--rffl-heading-font);
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.1;
+  color: #fff;
+}
+.rffl-season {
+  font-family: var(--rffl-heading-font);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rffl-accent-soft);
+  margin-top: 3px;
+}
+.rffl-updated { font-size: 12px; color: rgba(255, 255, 255, 0.75); text-align: right; }
+.rffl-updated strong { color: #fff; font-weight: 600; }
+.rffl-year {
+  font-family: var(--rffl-heading-font);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--rffl-accent-soft);
+  margin-top: 2px;
+}
+
+/* ---------- tabs ---------- */
+/* Tabs + body run edge-to-edge: the hosting page supplies outer padding. */
+.rffl-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 1px;
+  scrollbar-width: thin;
+}
+.rffl-tab {
+  font-family: var(--rffl-heading-font);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--rffl-ink-soft);
+  background: transparent;
+  border: 1px solid var(--rffl-line);
+  border-radius: 999px;
+  padding: 5px 11px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+.rffl-tab:hover { color: var(--rffl-ink); border-color: var(--rffl-ink-soft); }
+.rffl-tab.is-active {
+  background: var(--rffl-accent);
+  border-color: var(--rffl-accent);
+  color: #fff;
+}
+
+/* ---------- body ---------- */
+.rffl-body {
+  padding: 2px 0 8px;
+}
+.rffl-viewtitle {
+  font-family: var(--rffl-heading-font);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  color: var(--rffl-ink);
+}
+.rffl-teamhead {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.rffl-record {
+  font-family: var(--rffl-heading-font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rffl-accent);
+}
+.rffl-record span { color: var(--rffl-ink-soft); font-weight: 400; font-size: 13px; }
+
+/* ---------- player of the week ---------- */
+.rffl-pow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--rffl-line);
+  border-left: 4px solid var(--rffl-accent);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 4px 0 14px;
+  background: var(--rffl-zebra);
+}
+.rffl-pow-star { color: var(--rffl-accent); font-size: 24px; line-height: 1; }
+.rffl-pow-kicker {
+  font-family: var(--rffl-heading-font);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rffl-ink-soft);
+}
+.rffl-pow-name { font-size: 16px; font-weight: 700; }
+.rffl-pow-name em {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--rffl-ink-soft);
+  letter-spacing: 0.06em;
+  margin-left: 4px;
+}
+.rffl-pow-note { font-size: 12.5px; color: var(--rffl-ink-soft); }
+
+/* ---------- team leader cards ---------- */
+.rffl-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 0 0 16px;
+}
+.rffl-card {
+  border: 1px solid var(--rffl-line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: center;
+}
+.rffl-card-stat {
+  font-family: var(--rffl-heading-font);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rffl-ink-soft);
+}
+.rffl-card-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--rffl-accent);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+.rffl-card-name {
+  font-size: 12px;
+  color: var(--rffl-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- table/cards toggle + player cards ---------- */
+
+/* ---------- tables ---------- */
+.rffl-tablewrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--rffl-line);
+  border-radius: 8px;
+}
+.rffl-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.rffl-table th, .rffl-table td {
+  padding: 7px 9px;
+  text-align: right;
+  border-bottom: 1px solid var(--rffl-line);
+  font-size: 13px;
+}
+.rffl-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--rffl-header);
+  padding: 0;
+  z-index: 2;
+}
+.rffl-table thead button {
+  font-family: var(--rffl-heading-font);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  border: 0;
+  padding: 9px 9px;
+  width: 100%;
+  text-align: right;
+  cursor: pointer;
+}
+.rffl-table thead th.rffl-textcol button { text-align: left; }
+.rffl-table thead button:hover { color: #fff; }
+.rffl-table thead button.is-sorted { color: #fff; }
+.rffl-caret { color: var(--rffl-accent-soft); margin-left: 3px; }
+.rffl-table tbody tr:nth-child(even) { background: var(--rffl-zebra); }
+.rffl-table tbody tr:hover { background: #f3efec; }
+.rffl-table tbody tr:last-child td { border-bottom: 0; }
+.rffl-textcol {
+  text-align: left !important;
+  font-weight: 600;
+  position: sticky;
+  left: 0;
+  background: inherit;
+  z-index: 1;
+  box-shadow: 1px 0 0 var(--rffl-line);
+}
+.rffl-table thead th.rffl-textcol { z-index: 3; } /* paint over sibling headers when scrolled */
+.rffl-table tbody tr:nth-child(odd) .rffl-textcol { background: #fff; }
+.rffl-table tbody tr:nth-child(even) .rffl-textcol { background: var(--rffl-zebra); }
+.rffl-rank {
+  color: var(--rffl-ink-soft);
+  font-size: 11px !important;
+  width: 26px;
+  text-align: center !important;
+}
+th.rffl-rank { background: var(--rffl-header); }
+
+/* ---------- leader boards ---------- */
+.rffl-boards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+.rffl-board {
+  border: 1px solid var(--rffl-line);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.rffl-board h4 {
+  font-family: var(--rffl-heading-font);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--rffl-accent);
+}
+.rffl-qual {
+  display: block;
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--rffl-ink-soft);
+  text-transform: none;
+  font-weight: 400;
+}
+.rffl-board ol { list-style: none; margin: 0; padding: 0; }
+.rffl-board li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 13px;
+}
+.rffl-lrank {
+  color: var(--rffl-ink-soft);
+  font-size: 11px;
+  min-width: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.rffl-board li:first-child { font-weight: 700; }
+.rffl-board li:first-child .rffl-lval { color: var(--rffl-accent); }
+.rffl-lname {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rffl-lname em {
+  font-style: normal;
+  font-size: 10.5px;
+  color: var(--rffl-ink-soft);
+  letter-spacing: 0.06em;
+}
+.rffl-lval { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* ---------- misc ---------- */
+.rffl-empty {
+  font-size: 11.5px;
+  color: var(--rffl-ink-soft);
+  margin: 10px 2px 0;
+}
+.rffl-foot {
+  font-size: 11.5px;
+  color: var(--rffl-ink-soft);
+  padding: 10px 2px 0;
+}
+.rffl-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 60px 0;
+  color: var(--rffl-ink-soft);
+  border: 1px solid var(--rffl-line);
+  border-radius: 12px;
+}
+.rffl-spin {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid var(--rffl-line);
+  border-top-color: var(--rffl-accent);
+  border-radius: 50%;
+  animation: rffl-spin 0.8s linear infinite;
+}
+@keyframes rffl-spin { to { transform: rotate(360deg); } }
+.rffl-error {
+  border: 1px solid #e5b8b0;
+  background: #fdf3f1;
+  border-radius: 12px;
+  padding: 24px;
+  color: var(--rffl-ink);
+}
+.rffl-error span { font-size: 12px; color: var(--rffl-ink-soft); }
+
+/* ---------- small screens ---------- */
+/* ---------- RFFL additions: two POW cards, per-team stat groups, results ---------- */
+.rffl-pows { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0 12px; }
+.rffl-grouptitle {
+  font-family: var(--rffl-heading-font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rffl-accent);
+  margin: 18px 0 6px;
+}
+.rffl-results { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rffl-line); }
+.rffl-results li {
+  display: grid;
+  grid-template-columns: 44px 1fr 16px 1fr;
+  align-items: baseline;
+  gap: 6px;
+  padding: 7px 4px;
+  border-bottom: 1px solid var(--rffl-line);
+  color: var(--rffl-ink-soft);
+}
+.rffl-results li span:nth-child(2) { text-align: right; }
+.rffl-results .is-win { color: var(--rffl-ink); font-weight: 600; }
+.rffl-rdate { font-size: 12px; }
+.rffl-rsep { text-align: center; }
+
+@media (max-width: 560px) {
+  .rffl-masthead {
+    padding: 14px 16px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .rffl-league { font-size: 21px; }
+  .rffl-season { font-size: 10.5px; letter-spacing: 0.12em; }
+  .rffl-updated { text-align: left; }
+  .rffl-year { display: inline; margin-left: 5px; } /* keep year on the same line */
+  .rffl-tabs { padding: 10px 1px; }
+  .rffl-table th, .rffl-table td { padding: 6px 7px; font-size: 12px; }
+}
